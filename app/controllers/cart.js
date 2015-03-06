@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import OrderLine from '../models/order-line.js';
 
 export default Ember.ArrayController.extend({
   totalPrice: function() {
@@ -11,9 +12,29 @@ export default Ember.ArrayController.extend({
     return this.mapBy('id').uniq().get('length');
   }.property('length'),
 
+  addProduct: function(product) {
+    var orderLine = this.get('model').findBy('product', product);
+
+    if (!orderLine) {
+      orderLine = OrderLine.create({
+	product: product
+      });
+      this.pushObject(orderLine);
+    }
+
+    orderLine.incrementProperty('count');
+  },
+
   save: function() {
-    var ids = JSON.stringify(this.mapBy('id'));
-    localStorage.setItem('cart-product-ids', ids);
+    var ids = [];
+    this.forEach(function(orderLine) {
+      var productId = orderLine.get('product.id');
+      var count = orderLine.get('count');
+      for (var i = 0; i < count; i++) {
+	ids.push(productId);
+      }
+    });
+    localStorage.setItem('cart-product-ids', JSON.stringify(ids));
   },
 
   restore: function() {

@@ -1,0 +1,7 @@
+<h1>新しいことを始めよ。</h1>
+
+<ul>
+  {{#each product in model}}
+    <li>{{link-to product.name "product" product}}</li>
+  {{/each}}
+</ul>

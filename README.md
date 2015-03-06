@@ -1,4 +1,4 @@
-# Learning-emberjs
+# Learning Ember.js
 
 Gihyo's 'Learning Ember.js' Demo Application
 

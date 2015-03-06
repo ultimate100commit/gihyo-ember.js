@@ -2,6 +2,8 @@ import Ember from 'ember';
 import OrderLine from '../models/order-line.js';
 
 export default Ember.ArrayController.extend({
+  isReady: false,
+
   totalPrice: function() {
     return this.mapBy('price').reduce(function(total, price) {
       return total + price;
@@ -26,6 +28,10 @@ export default Ember.ArrayController.extend({
   },
 
   save: function() {
+    if (!this.get('isReady')) {
+      return;
+    }
+
     var ids = [];
     this.forEach(function(orderLine) {
       var productId = orderLine.get('product.id');
@@ -48,6 +54,7 @@ export default Ember.ArrayController.extend({
     var products = [];
     products = products.compact();
     this.set('model', products);
+    this.set('isReady', true);
   },
 
   actions: {

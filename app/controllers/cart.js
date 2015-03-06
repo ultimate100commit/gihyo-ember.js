@@ -48,5 +48,15 @@ export default Ember.ArrayController.extend({
     var products = [];
     products = products.compact();
     this.set('model', products);
+  },
+
+  actions: {
+    increment: function(orderLine) {
+      orderLine.incrementProperty('count');
+    },
+
+    decrement: function(orderLine) {
+      orderLine.decrementProperty('count');
+    }
   }
 });

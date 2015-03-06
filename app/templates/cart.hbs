@@ -13,6 +13,10 @@
       <td>{{orderLine.product.price}}</td>
       <td>{{orderLine.count}}</td>
       <td>${{orderLine.price}}</td>
+      <td>
+        <button {{action "increment" orderLine}}>+1</button>
+        <button {{action "decrement" orderLine}}>-1</button>
+      </td>
     </tr>
   {{/each}}
 </table>

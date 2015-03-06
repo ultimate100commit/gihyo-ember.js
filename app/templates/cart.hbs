@@ -1,12 +1,21 @@
 <h1>注文確認</h1>
 
-{{uniqProductCount}}種類 ({{model.length}}個)の商品がカートに入っています。
-
-<ul>
-  {{#each product in model}}
-    <li>{{product.name}}: ${{product.price}} USD</li>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>価格(USD)</th>
+    <th>個数</th>
+    <th>小計</th>
+  </tr>
+  {{#each orderLine in model}}
+    <tr>
+      <td>{{orderLine.product.name}}</td>
+      <td>{{orderLine.product.price}}</td>
+      <td>{{orderLine.count}}</td>
+      <td>${{orderLine.price}}</td>
+    </tr>
   {{/each}}
-</ul>
+</table>
 
 <hr />
 

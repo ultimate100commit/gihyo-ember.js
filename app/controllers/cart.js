@@ -9,5 +9,10 @@ export default Ember.ArrayController.extend({
 
   uniqProductCount: function() {
     return this.mapBy('id').uniq().get('length');
-  }.property('@length')
+  }.property('@length'),
+
+  save: function() {
+    var ids = JSON.stringify(this.mapBy('id'));
+    localStorage.setItem('cart-product-ids', ids);
+  }
 });

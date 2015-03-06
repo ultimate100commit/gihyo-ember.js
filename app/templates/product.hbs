@@ -3,4 +3,4 @@
 <a {{bind-attr href=model.url}} targe="_blank">詳しく見る</a>
 
 ${{model.price}} USD
-<button>カートに入れる</button>
+<button {{action "addCart" model}}>カートに入れる</button>

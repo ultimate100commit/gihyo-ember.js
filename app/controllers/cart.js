@@ -64,6 +64,21 @@ export default Ember.ArrayController.extend({
 
     decrement: function(orderLine) {
       orderLine.decrementProperty('count');
+    },
+
+    submit: function() {
+      var params = [];
+      this.get('model').forEach(function(orderLine) {
+	params.push({
+	  product_id: orderLine.get('product.id'),
+	  count: orderLine.get('count')
+	});
+      });
+
+      alert('購入が完了しました。(' + JSON.stringify(params) + ')');
+
+      this.get('model').clear();
+      this.transitionToRoute('products');
     }
   }
 });

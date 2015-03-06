@@ -8,6 +8,7 @@ export default Ember.Route.extend({
   actions: {
     addCart: function(product) {
       this.controllerFor('cart').pushObject(product);
+      this.controllerFor('cart').save();
 
       this.transitionTo('cart');
     }

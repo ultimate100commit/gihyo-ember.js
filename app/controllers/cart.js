@@ -14,5 +14,18 @@ export default Ember.ArrayController.extend({
   save: function() {
     var ids = JSON.stringify(this.mapBy('id'));
     localStorage.setItem('cart-product-ids', ids);
+  },
+
+  restore: function() {
+    var idsString = localStorage.getItem('cart-product-ids');
+    var ids;
+    if (idsString) {
+      ids = JSON.parse(idsString);
+    } else {
+      ids = [];
+    }
+    var products = [];
+    products = products.compact();
+    this.set('model', products);
   }
 });

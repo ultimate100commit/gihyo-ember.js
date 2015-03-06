@@ -35,7 +35,7 @@ export default Ember.ArrayController.extend({
       }
     });
     localStorage.setItem('cart-product-ids', JSON.stringify(ids));
-  },
+  }.observes('@each.count'),
 
   restore: function() {
     var idsString = localStorage.getItem('cart-product-ids');

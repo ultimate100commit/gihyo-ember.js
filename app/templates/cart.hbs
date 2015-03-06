@@ -1,3 +1,9 @@
 <h1>注文確認</h1>
 
-カートは空です。
+{{model.length}}個の商品がカートに入っています。
+
+<ul>
+  {{#each product in model}}
+    <li>{{product.name}}: ${{product.price}} USD</li>
+  {{/each}}
+</ul>
